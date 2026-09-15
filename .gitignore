@@ -1,0 +1,25 @@
+# Archivos temporales de Microsoft Office / Word
+~$*.docx
+~$*.xlsx
+*.tmp
+
+# Archivos de entorno y temporales de R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user
+Rplots.pdf
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.venv/
+env/
+venv/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
