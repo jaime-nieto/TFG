@@ -36,7 +36,11 @@ Se seleccionaron cuatro vehículos cotizados de máxima liquidez representativos
 ## 🔬 Metodología Cuantitativa
 
 ### 1. Rendimientos Continuos Logarítmicos
-$$r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)$$
+
+$$
+r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)
+$$
+
 *Justificación:* Garantiza aditividad temporal a lo largo del horizonte multiperiodo y mejores propiedades estadísticas para el modelado econométrico continuo.
 
 ### 2. Medidas Univariantes y Contraste de Normalidad
@@ -50,12 +54,24 @@ $$r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)$$
 
 ### 4. Momentos Sistemáticos de Orden Superior (Benchmark: SPY)
 Permiten capturar el riesgo asimétrico de cola (*tail risk*) que los modelos gaussianos y el CAPM clásico omiten:
-- **Comovimiento Sistemático:** Tendencia de dos activos a atravesar episodios de alta volatilidad de forma simultánea:
-  $$\text{Comovimiento}(i, j) = \frac{\sum (r_{i,t} - \bar{r}_i)^2 (r_{j,t} - \bar{r}_j)^2}{\sum (r_{j,t} - \bar{r}_j)^4}$$
-- **Coasimetría Estandarizada:** Sensibilidad de los rendimientos del activo $i$ ante repuntes bruscos de volatilidad en el mercado $j$:
-  $$\text{Coasimetría}(i, j) = \frac{\sum (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)^2}{N \cdot \sigma_i \cdot \sigma_j^2}$$
-- **Cocurtosis Sistemática:** Tendencia a acompañar o contrarrestar los movimientos más extremos del mercado:
-  $$\text{Cocurtosis}(i, j) = \frac{\sum (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)^3}{\sum (r_{j,t} - \bar{r}_j)^4}$$
+
+- **Comovimiento Sistemático ($\delta_{i,j}^{(2,2)}$):** Mide la tendencia de dos activos a atravesar episodios de alta volatilidad de forma simultánea:
+
+$$
+\delta_{i,j}^{(2,2)} = \frac{\sum_{t=1}^n (r_{i,t} - \bar{r}_i)^2 (r_{j,t} - \bar{r}_j)^2}{\sum_{t=1}^n (r_{j,t} - \bar{r}_j)^4}
+$$
+
+- **Coasimetría Estandarizada ($\delta_{i,j}^{(1,2)}$):** Sensibilidad de los rendimientos del activo $i$ ante repuntes bruscos de volatilidad en el mercado $j$ (Fry et al., 2010):
+
+$$
+\delta_{i,j}^{(1,2)} = \frac{\sum_{t=1}^n (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)^2}{n \cdot S_i \cdot S_j^2}
+$$
+
+- **Cocurtosis Sistemática ($\delta_{i,j}^{(1,3)}$):** Tendencia a acompañar o contrarrestar los movimientos más extremos del mercado (Fang & Lai, 1997):
+
+$$
+\delta_{i,j}^{(1,3)} = \frac{\sum_{t=1}^n (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)^3}{\sum_{t=1}^n (r_{j,t} - \bar{r}_j)^4}
+$$
 
 ### 5. Análisis por Regímenes de Mercado (Guerra de Ucrania)
 Segmentación en 3 ventanas temporales de 252 sesiones bursátiles:
